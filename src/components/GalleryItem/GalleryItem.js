@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 
 class GalleryItem extends Component{
     state = {
-        liked: true,
+        click: true,
     }
     likePic = ( event ) => {
         this.setState({
-            liked: !this.state.liked,
+            click: !this.state.click,
         })//end likePic
     }
     render(){
-        let picture = <img className="card-image-top" 
+        let picture = <img
         src = {this.props.individualData.path}
         alt = {this.props.individualData.description}
         data-id={this.props.i}
         />
 
-        if (this.state.liked == false){
+        if (this.state.click === false){
             picture = <p>{this.props.individualData.description}</p>;
         }  
         return(
@@ -29,7 +29,7 @@ class GalleryItem extends Component{
              </div>
              <div className="card-body">
              <h5 className="card-title">
-                Likes: {this.props.individualData.like}
+                Likes: {this.props.individualData.click}
              </h5>
             <br />
             <button className="btn btn-primary"
