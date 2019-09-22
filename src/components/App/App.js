@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import GalleryItem from '../GalleryItem/GalleryItem'
 import GalleryList from '../GalleryList/GalleryList'
 import axios from 'axios'
 
@@ -8,31 +7,36 @@ class App extends Component {
 
   state = {
     gallery: [],
+
   };
 
 
   componentDidMount = () => {
     this.getRequest();
-}
+}//end componentDidMount
 
   getRequest = () => {
     console.log('get Request');
-    axios({
-        method: 'GET',
-        url: '/gallery'
-    }).then((response) => {
-      console.log(response.data);
-  
+    axios.get('/gallery')
+      .then(( response ) => {
+      console.log( response.data );
+
         this.setState({
-          gallery:response.data
-        })
-      
-        
-        
+          
+          gallery:response.data,
+
+        })//end this.setState
+   
     }).catch((error) => {
         console.log('error from get', error);
-    })
-}
+    })//end catch
+}//end getRequest
+
+// updateLike = ( event ) => {
+
+//   axios.put()
+
+// }
 
   render() {
     return (
@@ -42,9 +46,7 @@ class App extends Component {
         </header>
         <br/>
         <p>Gallery goes here</p>
-        <GalleryItem />
-        <GalleryList />
-        <img src="images/goat_small.jpg"/>
+        <GalleryList gallery = {this.state.gallery}/>
       </div>
     );
   }
