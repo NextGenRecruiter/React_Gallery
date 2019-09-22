@@ -32,11 +32,16 @@ class App extends Component {
     })//end catch
 }//end getRequest
 
-// updateLike = ( event ) => {
+updateLike = ( event ) => {
 
-//   axios.put()
+  axios.put('/gallery/like/' + event.target.dataset.id)
+    .then(( response ) => {
+      this.getRequest();
+    }).catch((error) => {
+      console.log('error from update', error);
+    })//end catch
 
-// }
+}
 
   render() {
     return (
@@ -46,7 +51,7 @@ class App extends Component {
         </header>
         <br/>
         <p>Gallery goes here</p>
-        <GalleryList gallery = {this.state.gallery}/>
+        <GalleryList gallery = {this.state.gallery} updateLike = {this.updateLike}/>
       </div>
     );
   }
